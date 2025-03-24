@@ -3,17 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^4.1.3",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "@mui/styled-engine-sc": "^6.4.6",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.8.4",
+    "bootstrap": "^5.3.3",
+    "datatables.net": "^2.2.2",
+    "datatables.net-bs5": "^2.2.2",
+    "datatables.net-responsive-bs5": "^3.0.4",
+    "jquery": "^3.7.1",
     "react": "^19.0.0",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-hook-form": "^7.54.2",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.4.0",
+    "react-scripts": "^5.0.1",
+    "react-table": "^7.8.0",
+    "styled-components": "^6.1.16",
+    "sweetalert2": "^11.17.2",
+    "tailwindcss": "^4.0.15",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.6.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -35,5 +56,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3"
   }
 }

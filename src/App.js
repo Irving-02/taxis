@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import AppRouter from "./routes/AppRouter";
+import AuthState from "./context/Auth/AuthState";
+import VehiclesState from "./context/Vehicles/VehiclesState";
+import tokenAuth from "./config/TokenAuth";
 function App() {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    tokenAuth(token);
+    console.log("✅ Token configurado en Axios al iniciar la app:", token);
+  } else {
+    console.error("❌ No se encontró un token en localStorage.");
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthState>
+        <VehiclesState>
+          <AppRouter />
+        </VehiclesState>
+      </AuthState>
+    </>
   );
 }
 
