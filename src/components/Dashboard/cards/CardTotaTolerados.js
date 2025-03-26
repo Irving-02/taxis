@@ -1,9 +1,14 @@
 import React, { useContext, useEffect } from "react";
 
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import CarIcon from "../../icons/CarIcon";
+import { formattedDate } from "../../../utils/Today";
 import ToleradoIcon from "../../icons/ToleradoIcon";
+import VehiclesContext from "../../../context/Vehicles/VehiclesContext";
 const CardTotalTolerados = () => {
+  const { total_tolerados, get_total_tolerados } = useContext(VehiclesContext);
+  useEffect(() => {
+    get_total_tolerados();
+  }, []);
   return (
     <Paper
       elevation={3}
@@ -52,7 +57,7 @@ const CardTotalTolerados = () => {
           variant='subtitle2'
           sx={{ color: "#757575", marginTop: 0.5 }}
         >
-          {"24 - marzo - 2025"}
+          {formattedDate}
         </Typography>
       </Box>
 
@@ -70,7 +75,7 @@ const CardTotalTolerados = () => {
         }}
       >
         <Typography variant='h4' sx={{ fontWeight: "bold", color: "#000000" }}>
-          {30}
+          {total_tolerados ? total_tolerados.total : 0}
         </Typography>
       </Stack>
     </Paper>

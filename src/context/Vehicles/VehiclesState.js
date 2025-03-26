@@ -21,6 +21,10 @@ const VehiclesState = ({ children }) => {
     vehicle: {},
     loading: false,
     error: null,
+    total_carros: 0,
+    total_taxis: 0,
+    total_tolerados: 0,
+    total_verificados: 0,
   };
   const [state, dispatch] = useReducer(VehiclesReducer, initialState);
 
@@ -43,10 +47,10 @@ const VehiclesState = ({ children }) => {
   };
   const addVehicle = async (vehicle) => {
     try {
-      const { data } = await MethodPost("/vehicles", vehicle);
+      const { data } = await MethodPost("/taxis", vehicle);
       dispatch({
         type: ADD_VEHICLE,
-        payload: data,
+        payload: data.taxi,
       });
     } catch (error) {
       console.error(
@@ -92,6 +96,70 @@ const VehiclesState = ({ children }) => {
       });
     }
   };
+  const get_total_carros = () => {
+    let url = "/total_carros";
+    MethodGet(url)
+      .then((res) => {
+        dispatch({
+          type: "TOTAL_CARROS",
+          payload: res.data,
+        });
+      })
+      .catch((error) => {
+        console.error(
+          "❌ Error obteniendo total de carros:",
+          error.response?.data || error.message
+        );
+      });
+  };
+  const get_total_taxis = () => {
+    let url = "/total_taxis";
+    MethodGet(url)
+      .then((res) => {
+        dispatch({
+          type: "TOTAL_TAXIS",
+          payload: res.data,
+        });
+      })
+      .catch((error) => {
+        console.error(
+          "❌ Error obteniendo total de taxis:",
+          error.response?.data || error.message
+        );
+      });
+  };
+  const get_total_tolerados = () => {
+    let url = "/total_tolerados";
+    MethodGet(url)
+      .then((res) => {
+        dispatch({
+          type: "TOTAL_TOLERADOS",
+          payload: res.data,
+        });
+      })
+      .catch((error) => {
+        console.error(
+          "❌ Error obteniendo total de tolerados:",
+          error.response?.data || error.message
+        );
+      });
+  };
+  const get_total_verificados = () => {
+    let url = "/total_verificados";
+    MethodGet(url)
+      .then((res) => {
+        dispatch({
+          type: "TOTAL_VERIFICADOS",
+          payload: res.data,
+        });
+      })
+      .catch((error) => {
+        console.error(
+          "❌ Error obteniendo total de verificados:",
+          error.response?.data || error.message
+        );
+      });
+  };
   return (
     <VehiclesContext.Provider
       value={{
@@ -99,10 +167,18 @@ const VehiclesState = ({ children }) => {
         vehicle: state.vehicle,
         loading: state.loading,
         error: state.error,
+        total_carros: state.total_carros,
+        total_taxis: state.total_taxis,
+        total_tolerados: state.total_tolerados,
+        total_verificados: state.total_verificados,
         getVehicles,
         addVehicle,
         updateVehicle,
         deleteVehicle,
+        get_total_carros,
+        get_total_taxis,
+        get_total_tolerados,
+        get_total_verificados,
       }}
     >
       {children}

@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import VehiclesContext from "../../context/Vehicles/VehiclesContext";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='down' ref={ref} {...props} />;
 });
@@ -38,11 +38,12 @@ const schema = yup.object().shape({
     .min(1900, "Año no válido")
     .max(new Date().getFullYear(), "Año no válido")
     .required("El año es obligatorio"),
-  verificado: yup.string().required("Este campo es obligatorio"),
+  verificacion: yup.string().required("Este campo es obligatorio"),
   tipo: yup.string().required("Este campo es obligatorio"),
 });
 
-export default function FullScreenDialog({ open, handleClose, saveVehicle }) {
+export default function FullScreenDialog({ open, handleClose }) {
+  const { addVehicle } = React.useContext(VehiclesContext);
   const {
     control,
     handleSubmit,
@@ -56,13 +57,13 @@ export default function FullScreenDialog({ open, handleClose, saveVehicle }) {
       placa: "",
       serie: "",
       anio: "",
-      verificado: "Si",
+      verificacion: "Si",
       tipo: "Taxi",
     },
   });
 
   const onSubmit = (data) => {
-    saveVehicle(data);
+    addVehicle(data);
     handleClose();
   };
 
@@ -177,7 +178,7 @@ export default function FullScreenDialog({ open, handleClose, saveVehicle }) {
           </Grid2>
           <Grid2 item size={{ xs: 12, sm: 6 }}>
             <Controller
-              name='verificado'
+              name='verificacion'
               control={control}
               render={({ field }) => (
                 <FormControl>

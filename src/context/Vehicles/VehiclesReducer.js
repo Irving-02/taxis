@@ -4,6 +4,10 @@ import {
   ADD_VEHICLE,
   UPDATE_VEHICLE,
   DELETE_VEHICLE,
+  TOTAL_CARROS,
+  TOTAL_TAXIS,
+  TOTAL_TOLERADOS,
+  TOTAL_VERIFICADOS,
 } from "../../types";
 
 const VehiclesReducer = (state, action) => {
@@ -36,6 +40,26 @@ const VehiclesReducer = (state, action) => {
         vehicles: state.vehicles.filter(
           (vehicle) => vehicle.id !== action.payload
         ),
+      };
+    case TOTAL_CARROS:
+      return {
+        ...state,
+        total_carros: action.payload,
+      };
+    case TOTAL_TAXIS:
+      return {
+        ...state,
+        total_taxis: action.payload,
+      };
+    case TOTAL_TOLERADOS:
+      return {
+        ...state,
+        total_tolerados: action.payload,
+      };
+    case TOTAL_VERIFICADOS:
+      return {
+        ...state,
+        total_verificados: action.payload,
       };
     default:
       return state;

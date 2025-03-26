@@ -3,7 +3,15 @@ import React, { useContext, useEffect } from "react";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import CarIcon from "../../icons/CarIcon";
 import CardVerified from "../../icons/CardVerified";
+import VehiclesContext from "../../../context/Vehicles/VehiclesContext";
+import { formattedDate } from "../../../utils/Today";
 const CardTotalVerificados = () => {
+  const { total_verificados, get_total_verificados } =
+    useContext(VehiclesContext);
+  useEffect(() => {
+    get_total_verificados();
+  }, []);
+
   return (
     <Paper
       elevation={3}
@@ -52,7 +60,7 @@ const CardTotalVerificados = () => {
           variant='subtitle2'
           sx={{ color: "#757575", marginTop: 0.5 }}
         >
-          {"24 - marzo - 2025"}
+          {formattedDate}
         </Typography>
       </Box>
 
@@ -70,7 +78,7 @@ const CardTotalVerificados = () => {
         }}
       >
         <Typography variant='h4' sx={{ fontWeight: "bold", color: "#000000" }}>
-          {30}
+          {total_verificados ? total_verificados.total : 0}
         </Typography>
       </Stack>
     </Paper>

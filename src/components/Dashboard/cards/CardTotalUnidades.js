@@ -1,8 +1,13 @@
 import React, { useContext, useEffect } from "react";
-
+import { formattedDate } from "../../../utils/Today";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import CarIcon from "../../icons/CarIcon";
+import VehiclesContext from "../../../context/Vehicles/VehiclesContext";
 const CardTotalUnidades = () => {
+  const { total_carros, get_total_carros } = useContext(VehiclesContext);
+  useEffect(() => {
+    get_total_carros();
+  }, []);
   return (
     <Paper
       elevation={3}
@@ -51,7 +56,7 @@ const CardTotalUnidades = () => {
           variant='subtitle2'
           sx={{ color: "#757575", marginTop: 0.5 }}
         >
-          {"24 - marzo - 2025"}
+          {formattedDate}
         </Typography>
       </Box>
 
@@ -69,7 +74,7 @@ const CardTotalUnidades = () => {
         }}
       >
         <Typography variant='h4' sx={{ fontWeight: "bold", color: "#000000" }}>
-          {30}
+          {total_carros ? total_carros.total : 0}
         </Typography>
       </Stack>
     </Paper>

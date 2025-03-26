@@ -17,6 +17,7 @@ const Vehicles = () => {
   useEffect(() => {
     getVehicles();
   }, []);
+  console.log(vehicles, "vehicles");
 
   return (
     <Layout>
@@ -33,9 +34,7 @@ const Vehicles = () => {
         </Button>
       </div>
       <Grid2 size='auto' sx={{ mt: 4 }}>
-        <Paper sx={{ borderRadius: "20px" }}>
-          <TableVehicles data={vehicles} />
-        </Paper>
+        <TableVehicles data={vehicles} />
       </Grid2>
       <AddVehicles open={open} handleClose={handleClose} />
     </Layout>
