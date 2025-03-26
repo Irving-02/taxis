@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { Button, Grid2 as Grid, Paper, Typography } from "@mui/material";
 import AgregarGasto from "./AgregarGasto";
-
+import GastosContext from "../../context/GastosContext/GastosContext";
+import TableGastos from "../../components/Gastos/TableGastos";
 const Expenses = () => {
   const [openGasto, setOpenGasto] = useState(false);
 
-  const handleGuardarGasto = (data) => {
-    console.log("Gasto guardado:", data);
-  };
+  const { gastos, getGastos } = useContext(GastosContext);
+  useEffect(() => {
+    getGastos();
+  }, []);
+
   return (
     <Layout>
       <Paper sx={{ boxShadow: 3, borderRadius: 5 }}>
@@ -31,12 +34,15 @@ const Expenses = () => {
             Agregar
           </Button>
         </Grid>
+        <Grid
+          item
+          size={{ sx: 12, sm: 12, md: 12, lg: 12, xl: 12 }}
+          sx={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          <TableGastos data={gastos ?? []} />
+        </Grid>
       </Grid>
-      <AgregarGasto
-        open={openGasto}
-        onClose={() => setOpenGasto(false)}
-        onSubmit={handleGuardarGasto}
-      />
+      <AgregarGasto open={openGasto} onClose={() => setOpenGasto(false)} />
     </Layout>
   );
 };

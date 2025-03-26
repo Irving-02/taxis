@@ -2,6 +2,8 @@ import React from "react";
 import AppRouter from "./routes/AppRouter";
 import AuthState from "./context/Auth/AuthState";
 import VehiclesState from "./context/Vehicles/VehiclesState";
+import GastosState from "./context/GastosContext/GastosState";
+import PagosState from "./context/PagosContext/PagosState";
 import tokenAuth from "./config/TokenAuth";
 function App() {
   const token = localStorage.getItem("token");
@@ -16,7 +18,11 @@ function App() {
     <>
       <AuthState>
         <VehiclesState>
-          <AppRouter />
+          <GastosState>
+            <PagosState>
+              <AppRouter />
+            </PagosState>
+          </GastosState>
         </VehiclesState>
       </AuthState>
     </>
