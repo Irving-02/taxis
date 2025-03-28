@@ -8,6 +8,7 @@ import CardTotalTaxis from "../../components/Dashboard/cards/CardTotalTaxis";
 import CardTotalTolerados from "../../components/Dashboard/cards/CardTotaTolerados";
 import CardTotalVerificados from "../../components/Dashboard/cards/CardTotalVerificados";
 import CardTotalSinVerificar from "../../components/Dashboard/cards/CardTotalSinVerificar";
+import MonthlyIncomeChart from "../../components/Dashboard/charts/MonthlyIncomeChart";
 const Home = () => {
   const { usuario } = useContext(AuthContext);
 
@@ -34,6 +35,9 @@ const Home = () => {
         {/* <Grid item size={3} md={6} lg={4}>
           <CardTotalSinVerificar />
         </Grid> */}
+        <Grid item size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+          <MonthlyIncomeChart />
+        </Grid>
       </Grid>
     </Layout>
   );
